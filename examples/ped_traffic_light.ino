@@ -1,4 +1,4 @@
-#include "Lamp.h"
+#include "TrafficLightController.h"
 
 Light* red = new Light(0);
 Light* green = new Light(1);

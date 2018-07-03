@@ -1,4 +1,4 @@
-#include "Lamp.h"
+#include "TrafficLightController.h"
 
 Lamp::Lamp(int pinNumber){
   Lamp::pinNumber = pinNumber;
