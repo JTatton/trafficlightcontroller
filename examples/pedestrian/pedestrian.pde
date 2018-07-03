@@ -1,7 +1,7 @@
 #include "TrafficLightController.h"
 
-Light* red = new Light(0);
-Light* green = new Light(1);
+Lamp* red = new Lamp(0);
+Lamp* green = new Lamp(1);
 
 void setup() {
   // No Setup Required!

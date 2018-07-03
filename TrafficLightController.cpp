@@ -7,7 +7,7 @@ Lamp::Lamp(int pinNumber){
   _status = 0;
 }
 
-void Lamp::setpinNumber(int pinNumber){
+void Lamp::setPinNumber(int pinNumber){
   _pinNumber = pinNumber;
 }
 
@@ -37,7 +37,7 @@ bool Lamp::getStatus(){
   return _status;
 }
 
-void Lanp::flip(){
+void Lamp::flip(){
   if (_status == 0){
     digitalWrite(_pinNumber, LOW);
     _status == 1;
@@ -49,12 +49,12 @@ void Lanp::flip(){
 }
 
 void Lamp::flash(float timeOn, float timeOff, int numRepeats){
-  for (int i = 0; i < repeat; i++){
+  for (int i = 0; i < numRepeats; i++){
     digitalWrite(_pinNumber, LOW);
     _status = 1;
-    delay(on*1000);
+    delay(timeOn*1000);
     digitalWrite(_pinNumber, HIGH);
     _status = 0;
-    delay(off*1000);
+    delay(timeOff*1000);
   }
 }

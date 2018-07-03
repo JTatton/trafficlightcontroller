@@ -11,7 +11,7 @@
 class Lamp{
  public:
   Lamp(int pinNumber);              // Constructor Setup Pin Number
-  void setpinNumber(int pinNumber); // use if the pinNumber needs to change
+  void setPinNumber(int pinNumber); // use if the pinNumber needs to change
   void turnOn();                    // Turn on Indefnitely
   void turnOff();                   // Turn off Indefinitely
   void turnOn(float seconds);       // Turn On Lamp for 'seconds' seconds

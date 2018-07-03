@@ -1,0 +1,25 @@
+############################################
+# Syntax Coloring Map TrafficLightController
+############################################
+
+############################################
+# Datatypes (KEYWORD1)
+############################################
+
+Lamp			KEYWORD1
+
+############################################
+# Methods and Functions (KEYWORD2)
+############################################
+setPinNumber	KEYWORD2
+turnOn			KEYWORD2
+turnOff			KEYWORD2
+getStatus		KEYWORD2
+flip			KEYWORD2
+flash			KEYWORD2
+
+############################################
+# Constants (LITERAL1)
+############################################
+_pinNumber		LITERAL1
+_status			LITERAL1
