@@ -3,8 +3,8 @@
   Created by Joshua Tatton - June 2018
 */
 
-#ifndef LAMP_H
-#define LAMP_H
+#ifndef TRAFFICLIGHTCONTROLLER_H
+#define TRAFFICLIGHTCONTROLLER_H
 
 #include "Arduino.h"
 
@@ -17,9 +17,10 @@ class Lamp{
   void turnOn(float seconds);       // Turn On Lamp for 'seconds' seconds
   bool getStatus();                 // Returns 1 for Lamp is on or 0 if off
   void flip();                      // If Lamp is Off, Turn it On & Vice Versa
+  void flash(int timeOn, int timeOff, int numRepeats); // Flash light
 private:
   int _pinNumber;                   // Stores the pinNumber
   bool _status;                     // Stores whether the light is on 1 or off 0
 };
 
-#endif //LAMP_H
+#endif //TRAFFICLIGHTCONTROLLER_H
