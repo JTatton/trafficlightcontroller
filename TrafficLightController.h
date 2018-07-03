@@ -18,6 +18,7 @@ class Lamp{
   bool getStatus();                 // Returns 1 for Lamp is on or 0 if off
   void flip();                      // If Lamp is Off, Turn it On & Vice Versa
   void flash(float timeOn, float timeOff, int numRepeats); // Flash light
+  void debugToSerial();             // Print Debug information to serial
 private:
   int _pinNumber;                   // Stores the pinNumber
   bool _status;                     // Stores whether the light is on 1 or off 0
