@@ -13,9 +13,7 @@ void loop() {
   green->turnOn(5);
 
   //FLASH RED LIGHT
-  for(int i = 0; i < 3; i++){
-    red->turnOn(0.5);
-  }
+  red->flash(0.5,0.5,3);
 
   //PUT RED LIGHT ON 5 Secs
   red->turnOn(5);
