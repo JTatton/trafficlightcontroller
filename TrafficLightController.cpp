@@ -7,7 +7,7 @@ Lamp::Lamp(int pinNumber){
   _status = 0;
 }
 
-void Lamp::setpinNumber(int pinNumber){
+void Lamp::setPinNumber(int pinNumber){
   _pinNumber = pinNumber;
 }
 

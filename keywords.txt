@@ -11,7 +11,7 @@ Lamp			KEYWORD1
 ############################################
 # Methods and Functions (KEYWORD2)
 ############################################
-setpinNumber	KEYWORD2
+setPinNumber	KEYWORD2
 turnOn			KEYWORD2
 turnOff			KEYWORD2
 getStatus		KEYWORD2
