@@ -48,7 +48,7 @@ void Lanp::flip(){
   }
 }
 
-void Lamp::flash(int timeOn, int timeOff, int numRepeats){
+void Lamp::flash(float timeOn, float timeOff, int numRepeats){
   for (int i = 0; i < repeat; i++){
     digitalWrite(_pinNumber, LOW);
     _status = 1;
