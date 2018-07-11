@@ -67,41 +67,32 @@ void Lamp::flash(float timeOn, float timeOff, int numRepeats){
  *    LED IMPLEMENTATION BELOW
  */
 
-LEDLamp::LEDLamp(int pinNumber, int numLEDs){
-  _pinNumber = pinNumber;
+LEDLamp::LEDLamp(CRGB* leds, int numLEDs) : Lamp(-1){
   _numLEDs = numLEDs;
-
-  CRGB temp[_numLEDs];
-  _leds = temp;
-
-  FastLED.addLeds<WS2811, _pinNumber, GRB>(_leds, _numLEDs);
+  _leds = leds;
 }
 
 void LEDLamp::turnOn(){
-  if (_status == 0){
-    _status = 1;
-    for (int i = 0; i < _numLEDs; i++){   //Set all LEDs in Ring to White
-      _leds[i] = CRGB::White;
-    }
-    FastLED.show();
+  _status = 1;
+  for (int i = 0; i < _numLEDs; i++){   //Set all LEDs in Ring to White
+    *(_leds+i) = CRGB::White;
   }
+  FastLED.show();
 }
 
 void LEDLamp::turnOff(){
-  if (_status == 1){
-    _status = 0;
-    for (int i = 0; i < _numLEDs; i++)  //Set all LEDs in Ring to Black
-    {
-      _leds[i] = CRGB::Black;
-    }
-    FastLED.show();
+  _status = 0;
+  for (int i = 0; i < _numLEDs; i++)  //Set all LEDs in Ring to Black
+  {
+    *(_leds+i) = CRGB::Black;
   }
+  FastLED.show();
 }
 
 void LEDLamp::turnOn(float seconds){
   _status = 1;
   for (int i = 0; i < _numLEDs; i++){   //Set all LEDs in Ring to White
-    _leds[i] = CRGB::White;
+    *(_leds+i) = CRGB::White;
   }
   FastLED.show();
 
@@ -109,7 +100,7 @@ void LEDLamp::turnOn(float seconds){
 
   _status = 0;
   for (int i = 0; i < _numLEDs; i++){  //Set all LEDs in Ring to Black
-    _leds[i] = CRGB::Black;
+    *(_leds+i) = CRGB::Black;
   }
   FastLED.show();
 }
@@ -119,14 +110,14 @@ void LEDLamp::flip(){
     _status = 0;
     for (int i = 0; i < _numLEDs; i++)  //Set all LEDs in Ring to Black
     {
-      _leds[i] = CRGB::Black;
+      *(_leds+i) = CRGB::Black;
     }
     FastLED.show();
   }
   else{
     _status = 1;
     for (int i = 0; i < _numLEDs; i++){   //Set all LEDs in Ring to White
-      _leds[i] = CRGB::White;
+      *(_leds+i) = CRGB::White;
     }
     FastLED.show();
   }
@@ -137,7 +128,7 @@ void LEDLamp::flash(float timeOn, float timeOff, int numRepeats){
   {
     for (int i = 0; i < _numLEDs; ++i)
     {
-      _leds[i] = CRGB::White;
+      *(_leds+i) = CRGB::White;
     }
     _status = 1;
     FastLED.show();
@@ -145,7 +136,7 @@ void LEDLamp::flash(float timeOn, float timeOff, int numRepeats){
 
     for (int i = 0; i < _numLEDs; ++i)
     {
-      _leds[i] = CRGB::Black;
+      *(_leds+i) = CRGB::Black;
     }
     _status = 0;
     FastLED.show();
