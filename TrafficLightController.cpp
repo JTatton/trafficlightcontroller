@@ -67,14 +67,9 @@ void Lamp::flash(float timeOn, float timeOff, int numRepeats){
  *    LED IMPLEMENTATION BELOW
  */
 
-LEDLamp::LEDLamp(int pinNumber, int numLEDs){
-  _pinNumber = pinNumber;
+LEDLamp::LEDLamp(CRGB* leds, int numLEDs) : Lamp(-1){
   _numLEDs = numLEDs;
-
-  CRGB temp[_numLEDs];
-  _leds = temp;
-
-  FastLED.addLeds<WS2811, _pinNumber, GRB>(_leds, _numLEDs);
+  _leds = leds;
 }
 
 void LEDLamp::turnOn(){
