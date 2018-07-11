@@ -9,7 +9,6 @@
 
 CRGB leds[NUM_LIGHTS][NUM_LEDS_PER_LIGHT];
 
-<<<<<<< HEAD
 LEDLamp red(leds[0], NUM_LEDS_PER_LIGHT);
 LEDLamp amber(leds[1], NUM_LEDS_PER_LIGHT);
 LEDLamp green(leds[2], NUM_LEDS_PER_LIGHT);
@@ -24,16 +23,6 @@ void setup(){
   green.turnOff();
 
   delay(2000);
-=======
-LEDLamp* red = new LEDLamp(leds[0], NUM_LEDS_PER_LIGHT);
-LEDLamp* amber = new LEDLamp(leds[1], NUM_LEDS_PER_LIGHT);
-LEDLamp* green = new LEDLamp(leds[2], NUM_LEDS_PER_LIGHT);
-
-void setup(){
-  FastLED.addLeds<WS2811, RED_PIN, RGB>(leds[0], NUM_LEDS_PER_LIGHT);
-  FastLED.addLeds<WS2811, AMBER_PIN, RGB>(leds[1], NUM_LEDS_PER_LIGHT);
-  FastLED.addLeds<WS2811, GREEN_PIN, RGB>(leds[2], NUM_LEDS_PER_LIGHT);
->>>>>>> ccbdbb1af06511c051411a9a8a2cb93613a11fb1
 }
 
 void loop(){
