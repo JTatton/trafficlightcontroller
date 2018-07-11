@@ -1,5 +1,9 @@
 #include "TrafficLightController.h"
 
+/*
+ *    SIMPLE IMPLEMENTATION BELOW
+ */
+
 Lamp::Lamp(int pinNumber){
   _pinNumber = pinNumber;
   pinMode(_pinNumber, OUTPUT);         // Set pin to output
@@ -57,4 +61,18 @@ void Lamp::flash(float timeOn, float timeOff, int numRepeats){
     _status = 0;
     delay(timeOff*1000);
   }
+}
+
+/*
+ *    LED IMPLEMENTATION BELOW
+ */
+
+LEDLamp::LEDLamp(int pinNumber, int numLEDs){
+  _pinNumber = pinNumber;
+  _numLEDs = numLEDs;
+
+  CRGB temp[_numLEDs];
+  _leds = temp;
+
+  FastLED.addLeds<WS2811, _pinNumber, GRB>(_leds, _numLEDs);
 }
