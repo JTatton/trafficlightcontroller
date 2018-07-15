@@ -15,12 +15,12 @@ LEDLamp red(leds[0], NUM_LEDS_PER_LIGHT);
 LEDLamp amber(leds[1], NUM_LEDS_PER_LIGHT);
 LEDLamp green(leds[2], NUM_LEDS_PER_LIGHT);
 
-void broken();    // Flash Amber Light for 5 Seconds
-void english();   // Red -> Red/Amber -> Green -> Amber
-void aussie();    // Red -> Green -> Amber
-void upAndDown(); // Red -> Amber -> Green -> Amber
-void randomFlash();    // Random Flashing
-void allOn();     // All lights on
+void broken();      // Flash Amber Light for 5 Seconds
+void english();     // Red -> Red/Amber -> Green -> Amber
+void aussie();      // Red -> Green -> Amber
+void upAndDown();   // Red -> Amber -> Green -> Amber
+void randomFlash(); // Random Flashing
+void allOn();       // All lights on
 
 void setup(){
   FastLED.addLeds<WS2812, RED_PIN, GRB>(leds[0], NUM_LEDS_PER_LIGHT);
@@ -34,30 +34,44 @@ void setup(){
   pinMode(BUTTON_PIN, INPUT);
 
   delay(2000);
-}
-
-void loop(){
 
   // IF BUTTON IS PRESSED ON STARTUP - FLASH AMBER
   if(digitalRead(BUTTON_PIN) == LOW){
     broken();
   }
+}
 
-  int buttonState = 0;
+void loop(){
+  //Read button state (pressed or not pressed?)
+  bool buttonState = digitalRead(buttonPin);
+  bool prevButtonState = 0;
+  int buttonCounter = 0;
 
-  if (buttonState % 5 == 0){
+  if (buttonState != prevButtonState)
+  {
+    if(buttonState == HIGH){
+      buttonCounter++;
+    }
+    prevButtonState == buttonState;
+  }
+
+ 
+
+
+
+  if (buttonCounter % 5 == 0){
     english();
   }
-  else if (buttonState % 5 == 1){
+  else if (buttonCounter % 5 == 1){
     aussie();
   }
-  else if (buttonState % 5 == 2){
+  else if (buttonCounter % 5 == 2){
     upAndDown();
   }
-  else if (buttonState % 5 == 3){
+  else if (buttonCounter % 5 == 3){
     randomFlash();
   }
-  else if (buttonState % 5 == 4){
+  else if (buttonCounter % 5 == 4){
     allOn();
   }
   else{
