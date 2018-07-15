@@ -43,7 +43,7 @@ void setup(){
 
 void loop(){
   //Read button state (pressed or not pressed?)
-  bool buttonState = digitalRead(buttonPin);
+  bool buttonState = digitalRead(BUTTON_PIN);
   bool prevButtonState = 0;
   int buttonCounter = 0;
 
