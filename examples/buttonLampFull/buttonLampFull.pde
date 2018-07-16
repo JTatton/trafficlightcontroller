@@ -1,0 +1,140 @@
+#include "TrafficLightController.h"
+
+#define RED_PIN 0
+#define AMBER_PIN 1
+#define GREEN_PIN 2
+
+#define BUTTON_PIN 4
+
+Lamp red(RED_PIN);
+Lamp amber(AMBER_PIN);
+Lamp green(GREEN_PIN);
+
+void broken();      // Flash Amber Light for 5 Seconds
+void english();     // Red -> Red/Amber -> Green -> Amber
+void aussie();      // Red -> Green -> Amber
+void upAndDown();   // Red -> Amber -> Green -> Amber
+void randomFlash(); // Random Flashing
+void allOn();       // All lights on
+
+void setup(){
+  red.turnOff();
+  amber.turnOff();
+  green.turnOff();
+
+  pinMode(BUTTON_PIN, INPUT);
+
+  delay(2000);
+
+  // IF BUTTON IS PRESSED ON STARTUP - FLASH AMBER
+  if(digitalRead(BUTTON_PIN) == LOW){
+    broken();
+  }
+}
+
+void loop(){
+  //Read button state (pressed or not pressed?)
+  bool buttonState = digitalRead(BUTTON_PIN);
+  bool prevButtonState = 0;
+  int buttonCounter = 0;
+
+  if (buttonState != prevButtonState)
+  {
+    if(buttonState == HIGH){
+      buttonCounter++;
+    }
+    prevButtonState == buttonState;
+  }
+
+
+  if (buttonCounter % 5 == 0){
+    english();
+  }
+  else if (buttonCounter % 5 == 1){
+    aussie();
+  }
+  else if (buttonCounter % 5 == 2){
+    upAndDown();
+  }
+  else if (buttonCounter % 5 == 3){
+    randomFlash();
+  }
+  else if (buttonCounter % 5 == 4){
+    allOn();
+  }
+  else{
+    red.turnOn();
+    green.turnOn(5);
+    red.turnOff();
+  }
+
+}
+
+void broken(){
+  amber.flash(1,1,5);
+}
+
+void english(){
+  // RED
+  red.turnOn();
+  delay(5000);
+
+  // RED AMBER
+  amber.turnOn(2.5);
+  red.turnOff();
+
+  // GREEN
+  green.turnOn(5);
+
+  // AMBER
+  amber.turnOn(2.5);
+}
+
+void aussie(){
+  // RED
+  red.turnOn(5);
+
+  // GREEN
+  green.turnOn(5);
+
+  // AMBER
+  amber.turnOn(2.5);
+}
+
+void upAndDown(){
+  red.turnOn(1);
+
+  amber.turnOn(1);
+
+  green.turnOn(1);
+
+  amber.turnOn(1);
+}
+
+void randomFlash(){
+  int randomNum;
+
+  for (int i = 0; i < 10; i++){
+    randomNum = random(1,100);
+
+    if (randomNum < 33){
+      red.turnOn(1);
+    }
+    else if (randomNum >= 33 && randomNum < 67){
+      amber.turnOn(1);
+    }
+    else{
+      green.turnOn(1);
+    }
+  }
+
+}
+
+void allOn(){
+  // ALL On 10 Secs
+  red.turnOn();
+  amber.turnOn();
+  green.turnOn(10);
+  red.turnOff();
+  amber.turnOff();
+}
