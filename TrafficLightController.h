@@ -1,5 +1,6 @@
 /*
   TrafficLightController.h - Library for controlling Traffic Lights
+  Currently Uses the FastLED Library but too large for ATTiny85 with >2 Sets of LEDs
   Created by Joshua Tatton - June 2018
 */
 
