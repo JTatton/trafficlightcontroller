@@ -4,14 +4,14 @@
  *    SIMPLE IMPLEMENTATION BELOW
  */
 
-Lamp::Lamp(byte pinNumber){
+Lamp::Lamp(uint8_t pinNumber){
   _pinNumber = pinNumber;
   pinMode(_pinNumber, OUTPUT);         // Set pin to output
   digitalWrite(_pinNumber, HIGH);      // Make sure lamp is off
   _status = 0;
 }
 
-void Lamp::setPinNumber(byte pinNumber){
+void Lamp::setPinNumber(uint8_t pinNumber){
   _pinNumber = pinNumber;
 }
 
@@ -52,8 +52,8 @@ void Lamp::flip(){
   }
 }
 
-void Lamp::flash(float timeOn, float timeOff, byte numRepeats){
-  for (byte i = 0; i < numRepeats; i++){
+void Lamp::flash(float timeOn, float timeOff, uint8_t numRepeats){
+  for (uint8_t i = 0; i < numRepeats; i++){
     digitalWrite(_pinNumber, LOW);
     _status = 1;
     delay(timeOn*1000);
@@ -67,14 +67,14 @@ void Lamp::flash(float timeOn, float timeOff, byte numRepeats){
  *    LED IMPLEMENTATION BELOW
  */
 
-LEDLamp::LEDLamp(CRGB* leds, byte numLEDs) : Lamp(-1){
+LEDLamp::LEDLamp(CRGB* leds, uint8_t numLEDs) : Lamp(-1){
   _numLEDs = numLEDs;
   _leds = leds;
 }
 
 void LEDLamp::turnOn(){
   _status = 1;
-  for (byte i = 0; i < _numLEDs; i++){   //Set all LEDs in Ring to White
+  for (uint8_t i = 0; i < _numLEDs; i++){   //Set all LEDs in Ring to White
     *(_leds+i) = CRGB::White;
   }
   FastLED.show();
@@ -82,7 +82,7 @@ void LEDLamp::turnOn(){
 
 void LEDLamp::turnOff(){
   _status = 0;
-  for (byte i = 0; i < _numLEDs; i++)  //Set all LEDs in Ring to Black
+  for (uint8_t i = 0; i < _numLEDs; i++)  //Set all LEDs in Ring to Black
   {
     *(_leds+i) = CRGB::Black;
   }
@@ -91,7 +91,7 @@ void LEDLamp::turnOff(){
 
 void LEDLamp::turnOn(float seconds){
   _status = 1;
-  for (byte i = 0; i < _numLEDs; i++){   //Set all LEDs in Ring to White
+  for (uint8_t i = 0; i < _numLEDs; i++){   //Set all LEDs in Ring to White
     *(_leds+i) = CRGB::White;
   }
   FastLED.show();
@@ -99,7 +99,7 @@ void LEDLamp::turnOn(float seconds){
   delay(seconds * 1000);
 
   _status = 0;
-  for (byte i = 0; i < _numLEDs; i++){  //Set all LEDs in Ring to Black
+  for (uint8_t i = 0; i < _numLEDs; i++){  //Set all LEDs in Ring to Black
     *(_leds+i) = CRGB::Black;
   }
   FastLED.show();
@@ -108,7 +108,7 @@ void LEDLamp::turnOn(float seconds){
 void LEDLamp::flip(){
   if (_status == 1){
     _status = 0;
-    for (byte i = 0; i < _numLEDs; i++)  //Set all LEDs in Ring to Black
+    for (uint8_t i = 0; i < _numLEDs; i++)  //Set all LEDs in Ring to Black
     {
       *(_leds+i) = CRGB::Black;
     }
@@ -116,17 +116,17 @@ void LEDLamp::flip(){
   }
   else{
     _status = 1;
-    for (byte i = 0; i < _numLEDs; i++){   //Set all LEDs in Ring to White
+    for (uint8_t i = 0; i < _numLEDs; i++){   //Set all LEDs in Ring to White
       *(_leds+i) = CRGB::White;
     }
     FastLED.show();
   }
 }
 
-void LEDLamp::flash(float timeOn, float timeOff, byte numRepeats){
-  for (byte j = 0; j < numRepeats; j++)
+void LEDLamp::flash(float timeOn, float timeOff, uint8_t numRepeats){
+  for (uint8_t j = 0; j < numRepeats; j++)
   {
-    for (byte i = 0; i < _numLEDs; ++i)
+    for (uint8_t i = 0; i < _numLEDs; ++i)
     {
       *(_leds+i) = CRGB::White;
     }
@@ -134,7 +134,7 @@ void LEDLamp::flash(float timeOn, float timeOff, byte numRepeats){
     FastLED.show();
     delay(timeOn*1000);
 
-    for (byte i = 0; i < _numLEDs; ++i)
+    for (uint8_t i = 0; i < _numLEDs; ++i)
     {
       *(_leds+i) = CRGB::Black;
     }
