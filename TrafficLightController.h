@@ -29,7 +29,7 @@ protected:
 
 class LEDLamp : public Lamp {
   public:
-    LEDLamp(CRGB* leds, uint8_t numLEDs);// Constructor Setup Pin Number and Num LEDS
+    LEDLamp(CRGB* leds, uint8_t numLEDs, uint8_t offset = 0);// Constructor Setup Pin Number and Num LEDS
     virtual void turnOn();               // Turn on Indefinitely
     virtual void turnOff();              // Turn off Indefinitely
     virtual void turnOn(float seconds);  // Turn On Lamp for 'seconds' seconds
@@ -39,6 +39,7 @@ class LEDLamp : public Lamp {
   private:
     uint8_t _numLEDs;
     CRGB* _leds;
+    uint8_t _offset;
 };
 
 #endif //TRAFFICLIGHTCONTROLLER_H
