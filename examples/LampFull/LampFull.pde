@@ -1,7 +1,8 @@
 #include "TrafficLightController.h"
 
 Lamp* red = new Lamp(0);
-Lamp* green = new Lamp(1);
+Lamp* amber = new Lamp(1);
+Lamp* green = new Lamp(2);
 
 void setup() {
   // No Setup Required!
@@ -12,8 +13,8 @@ void loop() {
   //PUT GREEN LIGHT ON 5 Secs
   green->turnOn(5);
 
-  //FLASH RED LIGHT
-  red->flash(0.5,0.5,3);
+  //PUT AMBER ON 2 SECS
+  amber->turnOn(2);
 
   //PUT RED LIGHT ON 5 Secs
   red->turnOn(5);
